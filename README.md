@@ -1,6 +1,10 @@
 Mailjet Transport for Symfony Mailer Component
 ==============================================
 
+[![Packagist](https://img.shields.io/packagist/v/sylvaindeloux/symfony-mailjet-transport.svg)](https://packagist.org/packages/sylvaindeloux/symfony-mailjet-transport)
+[![Packagist](https://img.shields.io/packagist/dt/sylvaindeloux/symfony-mailjet-transport.svg)](https://packagist.org/packages/sylvaindeloux/symfony-mailjet-transport)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sylvaindeloux/symfony-mailjet-transport/blob/master/LICENSE.md)
+
 Install the bundle:
 
     composer require sylvaindeloux/symfony-mailjet-transport
