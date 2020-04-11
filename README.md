@@ -24,3 +24,18 @@ Now you can use your Mailjet account with Symfony Mailer. You just need to confi
 
 * SMTP: `mailjet+smtp://<your api key>:<your api secret>@in-v3.mailjet.com`
 * API: `mailjet+api://<your api key>:<your api secret>@api.mailjet.com?version=3.1`
+
+Use Mailjet templates with variables
+------------------------------------
+
+If you want to use a custom template instead of a Twig HTML / text body, and inject your own variables:
+
+    $email = (new \SylvainDeloux\MailjetTransport\Mailer\Email())
+        // ...
+        ->setTemplateId(<your template id>)
+        ->setErrorReportingEmail(<your email address for debugging>) // optional, to get a detailled message if template error occurs
+        ->setTemplateErrorDeliver() // optional, if you want the mail to be delivered if template error occurs
+        ->setVariables(array(
+            'key' => 'value',
+        ))
+    ;

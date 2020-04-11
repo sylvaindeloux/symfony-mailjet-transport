@@ -2,6 +2,7 @@
 
 namespace SylvainDeloux\MailjetTransport\Transport;
 
+use SylvainDeloux\MailjetTransport\Mailer\Email as MailjetEmail;
 use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mailer\Exception\HttpTransportException;
 use Symfony\Component\Mailer\SentMessage;
@@ -98,6 +99,27 @@ class MailjetApiTransport extends AbstractApiTransport
                 $payload['InlinedAttachments'][] = $att;
             } else {
                 $payload['Attachments'][] = $att;
+            }
+        }
+
+        if ($email instanceof MailjetEmail) {
+            if ($email->getTemplateId()) {
+                $payload['TemplateLanguage'] = true;
+                $payload['TemplateID'] = $email->getTemplateId();
+            }
+
+            if (count($email->getVariables())) {
+                $payload['Variables'] = $email->getVariables();
+            }
+
+            if ($email->getErrorReportingEmail()) {
+                $payload['TemplateErrorReporting'] = array(
+                    'Email' => $email->getErrorReportingEmail(),
+                );
+            }
+
+            if ($email->isTemplateErrorDeliver()) {
+                $payload['TemplateErrorDeliver'] = true;
             }
         }
 
