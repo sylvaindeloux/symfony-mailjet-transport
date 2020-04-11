@@ -18,6 +18,15 @@ final class MailjetTransportFactory extends AbstractTransportFactory
         $host = $dsn->getHost();
         $port = $dsn->getPort(587);
 
+        if ('mailjet+api' === $scheme) {
+            $transport = new MailjetApiTransport($this->client, $this->dispatcher, $this->logger);
+            $transport->setApiKey($user);
+            $transport->setSecretKey($password);
+            $transport->setHost($host);
+            $transport->setVersion($dsn->getOption('version', '3.1'));
+            return $transport;
+        }
+
         if ('mailjet+smtp' === $scheme) {
             $transport = new EsmtpTransport($host, $port, false, $this->dispatcher, $this->logger);
             $transport->setUsername($user);
