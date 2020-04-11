@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+
+    SylvainDeloux\MailjetTransport\Transport\MailjetTransportFactory:
+        tags: ['mailer.transport_factory']

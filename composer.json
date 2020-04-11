@@ -1,7 +1,7 @@
 {
     "name": "sylvaindeloux/symfony-mailjet-transport",
-    "description": "Symfony Mailjet transport Bridge",
-    "type": "symfony-bridge",
+    "description": "Mailjet transport for Symfony Mailer component.",
+    "type": "symfony-bundle",
     "homepage": "https://github.com/sylvaindeloux/symfony-mailjet-transport",
     "keywords": [],
     "license": "MIT",
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Symfony\\Component\\Mailer\\Bridge\\Mailjet\\" : "src/"
+            "SylvainDeloux\\MailjetTransport\\" : "src/"
         }
     }
 }

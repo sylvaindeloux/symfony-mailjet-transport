@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Component\Mailer\Bridge\Mailjet;
+namespace SylvainDeloux\MailjetTransport\Transport;
 
 use Symfony\Component\Mailer\Exception\UnsupportedSchemeException;
 use Symfony\Component\Mailer\Transport\AbstractTransportFactory;
