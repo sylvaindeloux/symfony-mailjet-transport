@@ -71,6 +71,8 @@ class MailjetApiTransport extends AbstractApiTransport
 
         if ('' !== $envelope->getSender()->getName()) {
             $payload['From']['Name'] = $envelope->getSender()->getName();
+        } elseif ('' !== $email->getFrom()[0]->getName()) {
+            $payload['From']['Name'] = $email->getFrom()[0]->getName();
         }
 
         $recipients = $this->getRecipients($email, $envelope);
