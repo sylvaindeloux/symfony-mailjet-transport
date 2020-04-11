@@ -28,11 +28,22 @@ class MailjetApiTransport extends AbstractApiTransport
         ));
 
         $result = $response->toArray(false);
-        if (200 !== $response->getStatusCode()) {
-            throw new HttpTransportException(sprintf('Unable to send an email: %s (code %s).', $result['ErrorMessage'], $result['ErrorIdentifier']), $response);
+
+        if (array_key_exists('Messages', $result)) {
+            $mailjetMessage = reset($result['Messages']);
         }
 
-        $sentMessage->setMessageId($result['Messages'][0]['To'][0]['MessageID']);
+        if (200 !== $response->getStatusCode()) {
+            if (array_key_exists('ErrorMessage', $result)) {
+                throw new HttpTransportException(sprintf('Unable to send an email: %s', $result['ErrorMessage']), $response);
+            }
+
+            if ('error' === $mailjetMessage['Status']) {
+                throw new HttpTransportException(sprintf('Unable to send an email: %s', $mailjetMessage['Errors'][0]['ErrorMessage']), $response);
+            }
+        }
+
+        $sentMessage->setMessageId($mailjetMessage['To'][0]['MessageID']);
 
         return $response;
     }
