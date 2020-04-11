@@ -14,9 +14,7 @@ Add it to `config/bundles.php`:
     <?php
 
     return [
-
         // ...
-
         SylvainDeloux\MailjetTransport\MailjetTransportBundle::class => ['all' => true],
     ];
 
