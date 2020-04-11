@@ -52,8 +52,6 @@ class MailjetApiTransport extends AbstractApiTransport
     {
         $payload = array(
             'Subject' => $email->getSubject(),
-            'TextPart' => $email->getTextBody(),
-            'HTMLPart' => $email->getHtmlBody(),
             'From' => array(
                 'Email' => $envelope->getSender()->getAddress(),
             ),
@@ -61,6 +59,14 @@ class MailjetApiTransport extends AbstractApiTransport
             'Attachments' => array(),
             'InlinedAttachments' => array(),
         );
+
+        if ($email->getTextBody()) {
+            $payload['TextPart'] = $email->getTextBody();
+        }
+
+        if ($email->getHtmlBody()) {
+            $payload['HTMLPart'] = $email->getHtmlBody();
+        }
 
         if ('' !== $envelope->getSender()->getName()) {
             $payload['From']['Name'] = $envelope->getSender()->getName();
