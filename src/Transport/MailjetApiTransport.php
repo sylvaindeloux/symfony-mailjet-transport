@@ -30,21 +30,19 @@ class MailjetApiTransport extends AbstractApiTransport
 
         $result = $response->toArray(false);
 
-        if (array_key_exists('Messages', $result)) {
-            $mailjetMessage = reset($result['Messages']);
+        if (array_key_exists('ErrorMessage', $result)) {
+            throw new HttpTransportException(sprintf('Unable to send an email: %s (error code: %s).', $result['ErrorMessage'], $result['ErrorCode']), $response);
         }
 
-        if (200 !== $response->getStatusCode()) {
-            if (array_key_exists('ErrorMessage', $result)) {
-                throw new HttpTransportException(sprintf('Unable to send an email: %s', $result['ErrorMessage']), $response);
-            }
+        $mailjetMessage = reset($result['Messages']);
 
-            if ('error' === $mailjetMessage['Status']) {
-                throw new HttpTransportException(sprintf('Unable to send an email: %s', $mailjetMessage['Errors'][0]['ErrorMessage']), $response);
-            }
+        if ('error' === $mailjetMessage['Status']) {
+            throw new HttpTransportException(sprintf('Unable to send an email: %s (error code: %s, related to "%s").', $mailjetMessage['Errors'][0]['ErrorMessage'], $mailjetMessage['Errors'][0]['ErrorCode'], implode('", "', $mailjetMessage['Errors'][0]['ErrorRelatedTo'])), $response);
         }
 
-        $sentMessage->setMessageId($mailjetMessage['To'][0]['MessageID']);
+        if ('success' === $mailjetMessage['Status']) {
+            $sentMessage->setMessageId($mailjetMessage['To'][0]['MessageUUID']);
+        }
 
         return $response;
     }
