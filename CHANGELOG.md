@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+0.5
+---
+
+* Cleanup + tests
+
+0.4
+---
+
+* Better error handler
+
 0.3
 ---
 
