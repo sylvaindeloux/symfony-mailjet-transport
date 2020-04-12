@@ -123,6 +123,10 @@ class MailjetApiTransport extends AbstractApiTransport
             if ($email->isTemplateErrorDeliver()) {
                 $payload['TemplateErrorDeliver'] = true;
             }
+
+            if (count($email->getAdditionalProperties())) {
+                $payload = array_merge($payload, $email->getAdditionalProperties());
+            }
         }
 
         return array('Messages' => array($payload));

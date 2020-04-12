@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.3
+---
+
+* Added properties to Email
+
 0.2
 ---
 

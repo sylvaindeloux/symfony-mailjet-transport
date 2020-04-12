@@ -13,6 +13,7 @@ class Email extends BaseEmail
     protected $variables = array();
     protected $errorReportingEmail = null;
     protected $templateErrorDeliver = false;
+    protected $additionalProperties = array();
 
     public function __construct(Headers $headers = null, AbstractPart $body = null)
     {
@@ -73,6 +74,25 @@ class Email extends BaseEmail
     public function setTemplateErrorDeliver(bool $templateErrorDeliver = true): self
     {
         $this->templateErrorDeliver = $templateErrorDeliver;
+
+        return $this;
+    }
+
+    public function getAdditionalProperties(): array
+    {
+        return $this->additionalProperties;
+    }
+
+    public function setAdditionalProperties(array $additionalProperties): self
+    {
+        $this->additionalProperties = $additionalProperties;
+
+        return $this;
+    }
+
+    public function addProperty(string $key, string $value): self
+    {
+        $this->additionalProperties[$key] = $value;
 
         return $this;
     }
