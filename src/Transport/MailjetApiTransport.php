@@ -14,7 +14,7 @@ class MailjetApiTransport extends AbstractApiTransport
 {
     private $apiKey;
     private $secretKey;
-    private $version;
+    private $version = '3.1';
 
     public function __toString(): string
     {
