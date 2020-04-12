@@ -107,4 +107,22 @@ class Email extends BaseEmail
 
         parent::ensureValidity();
     }
+
+    /**
+     * @internal
+     */
+    public function __serialize(): array
+    {
+        return [$this->templateId, $this->variables, $this->errorReportingEmail, $this->templateErrorDeliver, $this->additionalProperties, parent::__serialize()];
+    }
+
+    /**
+     * @internal
+     */
+    public function __unserialize(array $data): void
+    {
+        [$this->templateId, $this->variables, $this->errorReportingEmail, $this->templateErrorDeliver, $this->additionalProperties, $parentData] = $data;
+
+        parent::__unserialize($parentData);
+    }
 }
