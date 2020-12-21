@@ -6,6 +6,12 @@ Mailjet Transport for Symfony Mailer Component
 [![Travis build](https://img.shields.io/travis/sylvaindeloux/symfony-mailjet-transport.svg)](https://travis-ci.org/github/sylvaindeloux/symfony-mailjet-transport)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sylvaindeloux/symfony-mailjet-transport/blob/master/LICENSE.md)
 
+**Deprecated repository**
+
+Since Mailjet has been added by Symfony team to `symfony/mailjet-mailer`, this bundle will not evolve. If your project uses PHP 7.1, you can still use this bundle as symfony/mailjet-mailer requires PHP >= 7.2.
+
+**Installation**
+
 Install the bundle:
 
     composer require sylvaindeloux/symfony-mailjet-transport
