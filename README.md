@@ -8,7 +8,7 @@ Mailjet Transport for Symfony Mailer Component
 
 **Deprecated repository**
 
-Since Mailjet has been added by Symfony team to `symfony/mailjet-mailer`, this bundle will not evolve. If your project uses PHP 7.1, you can still use this bundle as symfony/mailjet-mailer requires PHP >= 7.2.
+Since Mailjet has been added by Symfony team to `symfony/mailjet-mailer`, this bundle will not evolve. 
 
 **Installation**
 
